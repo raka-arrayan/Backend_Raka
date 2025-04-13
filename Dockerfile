@@ -4,11 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# Install termasuk devDependencies (agar nodemon ikut)
-RUN npm install --include=dev
+# Install semua dependency termasuk devDependencies
+RUN npm install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Gunakan node, bukan nodemon, untuk production
+CMD ["node", "index.js"]
