@@ -4,10 +4,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+# Install termasuk devDependencies (agar nodemon ikut)
+RUN npm install --include=dev
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
