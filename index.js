@@ -9,7 +9,7 @@
         origin: ['http://localhost:5174','https://os.netlabdte.com', 'http://localhost:3000', 'https://tp-rakaarrayan.vercel.app'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type', 'Authorization'],
-        credentials: "include",
+        credentials: "true",
     }));
 
     app.options('*', cors());
