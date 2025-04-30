@@ -1,31 +1,35 @@
-const express = require("express")
-require("dotenv").config()
+    const express = require("express")
+    require("dotenv").config()
 
-const app = express()
-const PORT = process.env.PORT || 3000;
+    const app = express()
+    const PORT = process.env.PORT || 3000;
 
-const cors = require("cors");
-app.use(cors({
-    origin: 'https://os.netlabdte.com',
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-}));
+    const cors = require("cors");
+    app.use(cors({
+        origin: ['http://localhost:5174','https://os.netlabdte.com', 'http://localhost:3000'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true,
+    }));
 
-app.use(express.json());
-app.use('/store', require('./src/routes/store.route'));
+    app.options('*', cors());
 
-// const storeRoutes = require("./src/routes/store.route");
-// app.use("/", storeRoutes);
+    app.use(express.json());
+    app.use('/store', require('./src/routes/store.route'));
 
-app.use('/user', require('./src/routes/user.route'));
+    // const storeRoutes = require("./src/routes/store.route");
+    // app.use("/", storeRoutes);
 
-const itemRoutes = require("./src/routes/item.route");
-app.use("/item", itemRoutes);
+    app.use('/user', require('./src/routes/user.route'));
 
-const transactionRoutes = require("./src/routes/transaction.route");
-app.use("/transaction", transactionRoutes);
+    const itemRoutes = require("./src/routes/item.route");
+    app.use("/item", itemRoutes);
 
-app.use(express.urlencoded({ extended: true }));
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-});
+    const transactionRoutes = require("./src/routes/transaction.route");
+    app.use("/transaction", transactionRoutes);
+
+    app.use(express.urlencoded({ extended: true }));
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    });
 

@@ -1,4 +1,4 @@
-# Gunakan image Node.js resmi sebagai base
+# Gunakan image Node.js 
 FROM node:20.15.1
 
 # Set direktori kerja di dalam container
